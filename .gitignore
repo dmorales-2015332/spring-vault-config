@@ -1,0 +1,13 @@
+*.class
+*.jar
+target/
+.gradle/
+Desktop.ini
+*.war
+*.log
+.DS_Store
+Thumbs.db
+build/
+.env
+bin/
+*.iml
