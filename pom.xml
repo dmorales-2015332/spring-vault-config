@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    >
+        <groupId>org3.2</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>io.github.springault</groupId>
+    <version>1.0.0SNAPSHOT</version>
+    >jar</packaging>
+
+    <name>spring-vault-config</name>
+    <description>Spring Boot starter that seamlessly pulls secrets from HashiCorp Vault at application startup with automatic lease renewal</description>
+    <url>https://github.com/springvault/spring-vault-config</url>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0</url>
+        </license>
+    </licenses>
+
+    <properties>
+        <java.version>17</java.version>
+        <spring-vault.version>3.1.1</spring-vault.version>
+    </properties>
+
+    <dependencies>
+        <!-- Spring Boot Auto-configuration -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+        </dependency>
+
+        <!-- Spring Vault Core -->
+        <dependency>
+            <groupId>org.springframework.vault</groupId>
+            <artifactId>spring-vault-core</artifactId>
+            <version>${spring-vault.version}</version>
+        </dependency>
+
+        <!-- Spring Boot Configuration Processor for IDE support -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- Spring Web for REST-based Vault communication -->
+        <dependency>
+-starter-web</artifactId<optional>true</optional>
+         reducing boilerplate -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- Test dependencies -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+</artifactId>
+            >test</scope>
+        Id>
+            <artifactIdn        </dependency>
+    </dependencies>
+
+    <dependcontainers</groupId>
+                <artifactId>testb<version>1.19</version>
+                <type            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                    <source>${java.version}</source>
+                </target>
+                    ationProcessorPaths>
+                        <pathn                            <groupId>org.projectlombok</groupId>
+                            >
+                            <groupId>org.springframework.boot</groupId>
+                            <artifactId>spring-boot-configuration-processor</artifactId>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
