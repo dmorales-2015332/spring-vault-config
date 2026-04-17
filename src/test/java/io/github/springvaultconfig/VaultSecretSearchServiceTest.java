@@ -61,6 +61,20 @@ class VaultSecretSearchServiceTest {
     }
 
     @Test
+    void searchByKeyPattern_returnsAllKeysOnWildcardPattern() {
+        VaultResponse response = new VaultResponse();
+        Map<String, Object> data = new HashMap<>();
+        data.put("key1", "value1");
+        data.put("key2", "value2");
+        response.setData(data);
+        when(vaultTemplate.read("secret/app")).thenReturn(response);
+
+        Map<String, Object> result = service.searchByKeyPattern("secret/app", ".*");
+
+        assertThat(result).containsKeys("key1", "key2").hasSize(2);
+    }
+
+    @Test
     void listPaths_returnsEmptyWhenNullResponse() {
         when(vaultTemplate.read("secret/?list=true")).thenReturn(null);
         List<String> paths = service.listPaths("secret/");
