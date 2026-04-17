@@ -47,4 +47,13 @@ class VaultSecretGroupAutoConfigurationTest {
                     assertThat(group.get()).containsEntry("db.url", "jdbc:h2:mem");
                 });
     }
+
+    @Test
+    void unknownGroupReturnsEmpty() {
+        contextRunner.run(ctx -> {
+            VaultSecretGroupService svc = ctx.getBean(VaultSecretGroupService.class);
+            Optional<Map<String, Object>> group = svc.getGroup("nonexistent");
+            assertThat(group).isEmpty();
+        });
+    }
 }
