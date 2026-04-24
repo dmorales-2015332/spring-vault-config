@@ -96,4 +96,20 @@ class VaultSecretBackupServiceTest {
     void getBackupTimestamp_shouldReturnNullWhenNoBackup() {
         assertThat(backupService.getBackupTimestamp(SECRET_PATH)).isNull();
     }
+
+    @Test
+    void backup_shouldOverwritePreviousBackupWithLatestData() {
+        VaultResponse firstResponse = new VaultResponse();
+        firstResponse.setData(Map.of("db.password", "old-secret"));
+        when(vaultTemplate.read(SECRET_PATH)).thenReturn(firstResponse);
+        backupService.backup(SECRET_PATH);
+
+        VaultResponse secondResponse = new VaultResponse();
+        secondResponse.setData(Map.of("db.password", "new-secret"));
+        when(vaultTemplate.read(SECRET_PATH)).thenReturn(secondResponse);
+        backupService.backup(SECRET_PATH);
+
+        Map<String, Object> restored = backupService.restore(SECRET_PATH);
+        assertThat(restored).containsEntry("db.password", "new-secret");
+    }
 }
